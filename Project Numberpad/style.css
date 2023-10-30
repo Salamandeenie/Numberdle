@@ -51,7 +51,7 @@ align-self: center;
 #hud {
     background-color: black;
     width: 100vw;
-    height: 20vh;
+    height: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Vertically center the title */

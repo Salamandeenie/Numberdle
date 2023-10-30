@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'Alagard'; /* Choose a name for your font */
+    src: url("alagard.ttf") format('truetype'); /* Relative path to your font file */
+    /* Include additional src declarations for other font formats here if needed */
+  }
+  
+  .segment-group {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+.segment-group input {
+    width: 2em;
+    height: 2em; /* Make it square */
+    text-align: center;
+    margin: 0 0.1em; /* Add space between segments */
+    font-size: 32px; /* Increase font size */
+    font-weight: bold; /* Make text bold */
+  }
+:disabled {
+    color:white;
+}
+::selection{
+    user-select: none;
+    background-color: undefined;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0; /* Remove default body margin */
+    font-family: 'Alagard', sans-serif;
+  }
+input {
+    font-family: 'Alagard', sans-serif;
+    font-size: 1em;
+}
+input::placeholder {
+    font-family: 'Alagard', sans-serif;
+    font-size: 1em;
+}
+
+  
+#segmentedInputsContainer {
+color: white;
+padding: 5px;
+align-self: center;
+}
+
+#hud {
+    background-color: black;
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the title */
+    align-items: center; /* Horizontally center the title */
+    color: white;
+    padding: 5px;
+  }
+
+#title{
+    font-weight: bolder;
+    font-size: 3em;
+}

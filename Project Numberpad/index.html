@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Comparison Demo</title>
+</head>
+<body>
+    <h1>Array Comparison Demo</h1>
+    
+    <label for="array1">Array 1 (comma-separated values):</label>
+    <input type="text" id="array1" placeholder="1, 2, 3, 4, 5">
+    
+    <br>
+    
+    <label for="array2">Array 2 (comma-separated values):</label>
+    <input type="text" id="array2" placeholder="3, 4, 5, 6, 7">
+    
+    <br>
+    
+    <button onclick="compareArrays()">Compare</button>
+    
+    <h2>Comparison Results:</h2>
+    <p id="results"></p>
+
+    <script>
+    function compareArrays() {
+        const array1Input = document.getElementById("array1");
+        const array2Input = document.getElementById("array2");
+        const resultsElement = document.getElementById("results");
+
+        const array1 = array1Input.value.split(',').map(value => parseInt(value.trim()));
+        const array2 = array2Input.value.split(',').map(value => parseInt(value.trim()));
+
+        const results = compareArraysFunction(array1, array2);
+        resultsElement.textContent = "Comparison Results: " + results.join(", ");
+    }
+
+    function compareArraysFunction(arr1, arr2) {
+        const results = [];
+
+        for (let i = 0; i < arr1.length; i++) {
+            let found = false;
+
+            for (let j = 0; j < arr2.length; j++) {
+                if (arr1[i] === arr2[j]) {
+                    found = true;
+                    break; // If found, no need to continue searching
+                }
+            }
+
+            results.push(found ? 1 : 0);
+        }
+
+        return results;
+    }
+    </script>
+</body>
+</html>

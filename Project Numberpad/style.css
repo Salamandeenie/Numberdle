@@ -1,15 +1,32 @@
 @font-face {
     font-family: 'Alagard'; /* Choose a name for your font */
-    src: url("alagard.ttf") format('truetype'); /* Relative path to your font file */
+    src: url("Fonts/alagard.ttf") format('truetype'); /* Relative path to your font file */
+    /* Include additional src declarations for other font formats here if needed */
+  }
+  @font-face {
+    font-family: '7-seg'; /* Choose a name for your font */
+    src: url("Fonts/digital-7.ttf") format('truetype'); /* Relative path to your font file */
+    /* Include additional src declarations for other font formats here if needed */
+  }
+  @font-face {
+    font-family: 'Basis-33'; /* Choose a name for your font */
+    src: url("Fonts/basis33.ttf") format('truetype'); /* Relative path to your font file */
     /* Include additional src declarations for other font formats here if needed */
   }
   
-  .segment-group {
+  .segment-group, .dummy-group {
     display: flex;
     margin-bottom: 10px;
   }
 
-.segment-group input {
+  
+  .dummy-group {
+    position: relative;
+    margin-top: auto !important;
+    margin-left: 1vh !important;
+  }
+
+.segment-group input, .dummy-group {
     width: 2em;
     height: 2em; /* Make it square */
     text-align: center;
@@ -17,12 +34,23 @@
     font-size: 32px; /* Increase font size */
     font-weight: bold; /* Make text bold */
   }
-:disabled {
-    color:white;
+input::placeholder {
+    color:grey;
+    opacity: 1;
 }
+
+input:disabled{
+  color: white !important;
+}
+
+input:disabled::placeholder {
+  color: white !important;
+  opacity: 1;
+}
+
 ::selection{
     user-select: none;
-    background-color: undefined;
+    opacity: 0;
 }
 
 body {
@@ -30,37 +58,81 @@ body {
     flex-direction: column;
     height: 100vh;
     margin: 0; /* Remove default body margin */
-    font-family: 'Alagard', sans-serif;
+    font-family: 'Basis-33', sans-serif;
   }
 input {
-    font-family: 'Alagard', sans-serif;
+    font-family: '7-seg', sans-serif;
     font-size: 1em;
 }
 input::placeholder {
-    font-family: 'Alagard', sans-serif;
+    font-family: '7-seg', sans-serif;
     font-size: 1em;
 }
-
   
 #segmentedInputsContainer {
-color: white;
-padding: 5px;
 align-self: center;
+transform: translateY(12vh);
+/*z-index: -1; // This caused the segmentedInputsContainer to go underneath the body, making it unusable// */
 }
 
-#hud {
-    background-color: black;
-    width: 100vw;
-    height: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertically center the title */
-    align-items: center; /* Horizontally center the title */
-    color: white;
-    padding: 5px;
-  }
+#guessCounterHolder, #timer {
+  position: fixed;
+  top: 0;
+  height: 10vh;
+  width: 10%;
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 1.5em;
+  border-top: none;
+}
+#timer{
+  right: 25%;
+}
+#guessCounterHolder{
+  left: 25%;
+}
 
-#title{
-    font-weight: bolder;
-    font-size: 3em;
+#title {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 10vh;
+  width: 394px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  color: black;
+  font-size: 3em;
+  border-top: none;
+  font-family: 'alagard', 'basis-33', sans-serif;
+}
+
+#infoBoxLeft, #infoBoxRight{
+  position: fixed;
+  display: flex;
+  width: 18vw;
+  height: 50vh;
+  top: 10vh;
+}
+
+.boxed{
+  background-color: white;
+  border: solid black 5px;
+}
+
+#infoBoxLeft{
+  left: 20vw; 
+}
+
+#infoBoxRight{
+  right: 20vw; 
+}
+
+#infoBoxLeft, #infoBoxRight, #guessCounterHolder, #title, #timer{
+  z-index: 2;
 }

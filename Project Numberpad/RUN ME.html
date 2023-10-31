@@ -3,17 +3,54 @@
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="gamescript.js"></script>
-
 </head>
 <body>
   <div id="hud">
-    <div id="title">NUMBERDLE</div>
+    <div id="guessCounterHolder">
+      Guesses
+      <div id="guessPlaceholder" class="boxed">guess</div>
+    </div>
+    <div id="title" class="boxed">NUMBERDLE</div>
+    <div id="timer">
+      Time
+      <div id="timerPlaceholder" class="boxed">time</div>
+    </div>
   </div>
-  <div id="segmentedInputsContainer"></div>
+  <div id="infoBoxLeft" class="boxed">
+    <table>
+        <tr>
+            <td><input class="dummy-group" disabled placeholder="##" style="background-color: #6ca965"></input></td>
+            <td>Correct!</td>
+        </tr>
+        <tr>
+            <td><input class="dummy-group" disabled placeholder="##" style="background-color: #c8b653"></input></td>
+            <td> Correct number, incorrect position</td>
+        </tr>
+        <tr>
+            <td><input class="dummy-group" disabled placeholder="##" style="background-color: #787c7f"></input></td>
+            <td>Completley Incorrect</td>
+        </tr>
+    </table>
+</div>
+<div id="infoBoxRight" class="boxed">
+  <table>
+      <tr>
+          <td><input class="dummy-group" disabled placeholder="##" style="background-color: #b04bd3"></input></td>
+          <td>Input is within 2 numbers of the answers</td>
+      </tr>
+      <tr>
+          <td><input class="dummy-group" disabled placeholder="##" style="background-color: #4f4ba3"></input></td>
+          <td>Input is a factor of the answer</td>
+      </tr>
+      <tr>
+          <td><input class="dummy-group" disabled placeholder="##" style="background-color: #a34b52"></input></td>
+          <td>Input is divisible by the answer</td>
+      </tr>
+  </table>
+</div>
 
+  <div id="segmentedInputsContainer"></div>
   <script>
   </script>
 </body>
 </html>
-
-

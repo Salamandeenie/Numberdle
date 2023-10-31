@@ -3,27 +3,71 @@ document.addEventListener("DOMContentLoaded", function () {
     var answerGenerated = undefined;
     var answerSegmented = [];
     var slotDifficultyNumber = 5;
+    // JavaScript code
+    let timerInterval; // Variable to store the timer interval
+    let startTime; // Variable to store the start time
+    let previousTurnNumber = turnNumber; // Initialize the previousTurnNumber variable
+    const timerPlaceholder = document.getElementById('timerPlaceholder');
+    const guessPlaceholder = document.getElementById('guessPlaceholder');
+    
+    // Function to start the timer
+    function startTimer() {
+        if (!timerInterval) {
+        startTime = new Date().getTime();
+        timerInterval = setInterval(updateTimer, 100); // Update every decasecond (100 milliseconds)
+        }
+    }
+
+    // Function to update the timer
+    function updateTimer() {
+        const currentTime = new Date().getTime();
+        const elapsedTime = new Date(currentTime - startTime);
+        const minutes = elapsedTime.getMinutes().toString().padStart(2, '0');
+        const seconds = elapsedTime.getSeconds().toString().padStart(2, '0');
+
+        const formattedTime = `${minutes}:${seconds}`;
+        timerPlaceholder.textContent = formattedTime;
+    }
+
+    function updateGuessCounter() {
+        if (previousTurnNumber !== turnNumber) {
+          guessPlaceholder.textContent = turnNumber;
+          previousTurnNumber = turnNumber; // Update the previous value
+        }
+      
+        requestAnimationFrame(updateGuessCounter); // Schedule the next update
+    } 
+    
+    // Function to stop the timer
+    function stopTimer() {
+        if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        }
+    }
 
     // Generate a random answer number
     function generateAnswer() {
-        // Implement your random number generation logic here
-        answerGenerated = Math.floor(Math.random() * Math.pow(10, 2 * slotDifficultyNumber));
-        segmentize(answerGenerated, answerSegmented);
+        let error = false; // Variable to track if an error occurred
+        do {
+            // Generate a new answer
+            answerGenerated = Math.floor(Math.random() * Math.pow(10, 2 * slotDifficultyNumber));
+            error = !segmentize(answerGenerated, answerSegmented);
+        } while (error);
+
         console.log(answerGenerated);
         console.log(answerSegmented);
     }
 
-    // SEGMENTIZE FUNCTIONS
+
+    // Segmentize function with exceptions
     function segmentize(input, output = []) {
-        // Convert the input number to a string
         const inputStr = input.toString();
 
-        // Check if the input has an even number of digits
         if (inputStr.length % 2 !== 0) {
-            return "Input must have an even number of digits (2x digits).";
+            throw new Error('Input must have an even number of digits (2x digits).');
         }
 
-        // Use a loop to split the string into 2-digit segments and add them to the output array
         for (let i = 0; i < inputStr.length; i += 2) {
             output.push(inputStr.slice(i, i + 2));
         }
@@ -161,7 +205,7 @@ function colorGrade(input, answer) {
       }
   }
 
-    var turnNumber = 0;
+    var turnNumber = -1;
     // Function to create segmented input fields with a specified number of slots and a unique group ID
     function createSegmentedInput(slots) {
       turnNumber++; // Increment turnNumber
@@ -277,5 +321,9 @@ function colorGrade(input, answer) {
 
     //Generate Answer
     generateAnswer();
+    // Start the timer when the page loads
+    startTimer();
+    // Start the update loop
+    updateGuessCounter();
 
 });

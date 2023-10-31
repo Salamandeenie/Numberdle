@@ -7,5 +7,5 @@ My take on a number based version of the popular word guessing game.
 - then open the folder titled "Project Numberpad"
 - Finally, open "RUN ME.html" in your web browser of choice
 
-#Troubleshooting
+# Troubleshooting
 - If you encounter any errors, glitches, have comments or questions, email (calisheason@gmail.com)

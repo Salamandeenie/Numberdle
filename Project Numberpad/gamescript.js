@@ -49,12 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Generate a random answer number
     function generateAnswer() {
         let error = false; // Variable to track if an error occurred
-        do {
-            // Generate a new answer
-            answerGenerated = Math.floor(Math.random() * Math.pow(10, 2 * slotDifficultyNumber));
-            error = !segmentize(answerGenerated, answerSegmented);
-        } while (error);
-
+        // Generate a new answer
+        answerGenerated = Math.floor(Math.random() * Math.pow(10, 2 * slotDifficultyNumber));
+        segmentize(answerGenerated, answerSegmented);
         console.log(answerGenerated);
         console.log(answerSegmented);
     }
@@ -63,17 +60,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // Segmentize function with exceptions
     function segmentize(input, output = []) {
         const inputStr = input.toString();
-
+    
         if (inputStr.length % 2 !== 0) {
-            throw new Error('Input must have an even number of digits (2x digits).');
+            generateAnswer();
+            console.log("Error: Answer generated is invalid... Retrying");
         }
-
+    
+        // Clear the output array
+        output.length = 0;
+    
         for (let i = 0; i < inputStr.length; i += 2) {
             output.push(inputStr.slice(i, i + 2));
         }
-
+    
         return output;
     }
+    
 
     function desegmentize(input = [], output) {
       const sanitizedInput = input.map(element => {

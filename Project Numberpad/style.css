@@ -16,7 +16,7 @@
   
   .segment-group, .dummy-group {
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 1em;
   }
 
   
@@ -27,11 +27,11 @@
   }
 
 .segment-group input, .dummy-group {
-    width: 2em;
-    height: 2em; /* Make it square */
+    width: 3vw;
+    height: 3vw; /* Make it square */
     text-align: center;
     margin: 0 0.1em; /* Add space between segments */
-    font-size: 32px; /* Increase font size */
+    font-size: 1.75em; /* Increase font size */
     font-weight: bold; /* Make text bold */
   }
 input::placeholder {
@@ -79,7 +79,7 @@ transform: translateY(12vh);
   position: fixed;
   top: 0;
   height: 10vh;
-  width: 10%;
+  width: 10vw;
   display: flex;
   flex-direction: column; /* Stack content vertically */
   justify-content: center;
@@ -101,13 +101,15 @@ transform: translateY(12vh);
   left: 50%;
   transform: translateX(-50%);
   height: 10vh;
-  width: 394px;
+  width: 20vw;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  font-size: 3vw;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bolder;
   color: black;
-  font-size: 3em;
   border-top: none;
   font-family: 'alagard', 'basis-33', sans-serif;
 }
@@ -126,11 +128,11 @@ transform: translateY(12vh);
 }
 
 #infoBoxLeft{
-  left: 20vw; 
+  left: 18vw; 
 }
 
 #infoBoxRight{
-  right: 20vw; 
+  right: 18vw; 
 }
 
 #infoBoxLeft, #infoBoxRight, #guessCounterHolder, #title, #timer{

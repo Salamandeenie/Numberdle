@@ -1,14 +1,6 @@
-Name: How to play
-Level of importance: 6/10
-Description: Make a box to the left that shows how to play.
-
 Name: Auto-fill green
 Level of imptortance: 2/10
 Description: Make it so there is a toggleable autofill for green
-
-Name: Better HUD - Timer and Guess counter
-Level of importance: 7/10
-Description: A Timer and a guess counter at the top of the page will help players
 
 Name: Random guess
 Level of importance: 1/10
@@ -25,3 +17,7 @@ Description: When the input is the answer, the user should win!
 Name: Dark Mode
 Level of importance: Very Low
 Description: [Self-Descriptive]
+
+Name: Fix the damn scaling
+Level of importance: Very High
+Description: Just fix that damn scaling.

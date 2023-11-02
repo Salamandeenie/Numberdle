@@ -137,7 +137,7 @@ function colorGrade(input, answer) {
             colorGrades.push('pending');
             } else {
                 const diff = Math.abs(inputElement - answerElement);
-                if (diff <= 4) {
+                if (diff <= 2) {
                     colorGrades.push('Purple');
                 } else if (answerElement % inputElement === 0) {
                     colorGrades.push('Blue');

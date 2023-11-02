@@ -19,5 +19,5 @@ Level of importance: Very Low
 Description: [Self-Descriptive]
 
 Name: Fix the damn scaling
-Level of importance: Very High
+Level of importance: Done for now
 Description: Just fix that damn scaling.

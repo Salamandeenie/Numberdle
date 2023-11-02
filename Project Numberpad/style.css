@@ -4,8 +4,8 @@
     /* Include additional src declarations for other font formats here if needed */
   }
   @font-face {
-    font-family: '7-seg'; /* Choose a name for your font */
-    src: url("Fonts/digital-7.ttf") format('truetype'); /* Relative path to your font file */
+    font-family: '14-seg'; /* Choose a name for your font */
+    src: url("Fonts/DSEG14ModernMini-Regular.ttf") format('truetype'); /* Relative path to your font file */
     /* Include additional src declarations for other font formats here if needed */
   }
   @font-face {
@@ -31,7 +31,7 @@
     height: 3vw; /* Make it square */
     text-align: center;
     margin: 0 0.1em; /* Add space between segments */
-    font-size: 1.75em; /* Increase font size */
+    font-size: 1.5vw; /* Increase font size */
     font-weight: bold; /* Make text bold */
   }
 input::placeholder {
@@ -61,11 +61,11 @@ body {
     font-family: 'Basis-33', sans-serif;
   }
 input {
-    font-family: '7-seg', sans-serif;
+    font-family: '14-seg', sans-serif;
     font-size: 1em;
 }
 input::placeholder {
-    font-family: '7-seg', sans-serif;
+    font-family: '14-seg', sans-serif;
     font-size: 1em;
 }
   

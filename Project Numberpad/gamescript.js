@@ -50,19 +50,29 @@ document.addEventListener("DOMContentLoaded", function () {
     function generateAnswer() {
         let error = false; // Variable to track if an error occurred
         // Generate a new answer
-        answerGenerated = Math.floor(Math.random() * Math.pow(10, 2 * slotDifficultyNumber));
-        segmentize(answerGenerated, answerSegmented);
+        answerSegmented = generateArray();
+        desegmentize(answerSegmented, answerGenerated);
         console.log(answerGenerated);
         console.log(answerSegmented);
     }
 
+    function generateArray(numElements = 5, digitAmount = 2, minNumber = 0, maxNumber = 99) {
+        const generatedArray = [];
+        for (let i = 0; i < numElements; i++) {
+            const randomElement = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+            const formattedElement = randomElement.toString().padStart(digitAmount, '0');
+            generatedArray.push(formattedElement);
+        }
+        return generatedArray;
+    }
+    
+
 
     // Segmentize function with exceptions
-    function segmentize(input, output = []) {
+    function segmentize(input, output = [], segmentSize = 2) {
         const inputStr = input.toString();
     
-        if (inputStr.length % 2 !== 0) {
-            generateAnswer();
+        if (inputStr.length % segmentSize !== 0) {
             console.log("Error: Answer generated is invalid... Retrying");
         }
     
@@ -102,80 +112,65 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
 
-  function compareArrays(arr1, arr2) {
-    const results = [];
-
-    for (let i = 0; i < arr1.length; i++) {
-        let found = false;
-
-        for (let j = 0; j < arr2.length; j++) {
-            if (arr1[i] === arr2[j]) {
-                found = true;
-                break; // If found, no need to continue searching
-            }
-        }
-
-        results.push(found ? 1 : 0);
+  function findNumberInArray(number, array) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] === number) {
+        return i; // Return the index of the first occurrence of the number
+      }
     }
-
-    return results;
-}
+    return -1; // If the number is not found in the array, return -1
+  }
 
 function colorGrade(input, answer) {
-  // Initialize an array to store the color grades
-  const colorGrades = [];
+    const colorGrades = [];
+    const yellowTracker = new Array(answer.length).fill(false); // Initialize the tracker array with 'false'
 
-  // Iterate through the elements of input and answer arrays to find yellow grades
-  for (let i = 0; i < input.length; i++) {
-      const inputElement = parseInt(input[i]);
-      const answerElement = parseInt(answer[i]);
+    for (let i = 0; i < input.length; i++) {
+        const inputElement = input[i];
+        const answerElement = answer[i];
 
-      if (isNaN(inputElement) || isNaN(answerElement)) {
-          // Grey - If any element is not a number, the entire input is grey
-          colorGrades.push('Grey');
-      } else if (inputElement === answerElement) {
-          // Green - Same value and same position
-          colorGrades.push('Green');
-      } else if (answer.includes(inputElement)) {
-          // Yellow - Element exists in the answer array
-          colorGrades.push('Yellow');
-      } else {
-          // Push a placeholder value (e.g., 'Pending') for non-yellow elements
-          colorGrades.push('Pending');
-      }
-  }
+        if (inputElement === answerElement) {
+            colorGrades.push('Green');
+            yellowTracker[i] = true; // Mark this answer element as matched
+        } 
+            else if (answer.includes(inputElement)) {
+            colorGrades.push('pending');
+            } else {
+                const diff = Math.abs(inputElement - answerElement);
+                if (diff <= 4) {
+                    colorGrades.push('Purple');
+                } else if (answerElement % inputElement === 0) {
+                    colorGrades.push('Blue');
+                } else if (inputElement % answerElement === 0) {
+                    colorGrades.push('Red');
+                } else {
+                    colorGrades.push('Grey');
+                }
+            }
+    }
 
-  // Now, process the remaining color grades (Purple, Blue, Red, and Grey)
-  for (let i = 0; i < input.length; i++) {
-      if (colorGrades[i] === 'Pending') {
-          const inputElement = parseInt(input[i]);
-          const answerElement = parseInt(answer[i]);
+    for (let i = 0; i < input.length; i++){
+        if(colorGrades[i] == 'pending') // All the maybe yellows
+        {
+            if(yellowTracker[findNumberInArray(input[i], answer)] == false) // Check the yellow tracker, if it is not true, make it yellow, and add it to the tracker.
+            {
+                yellowTracker[findNumberInArray(input[i], answer)] = true;
+                colorGrades[i] = 'Yellow';
+            }
 
-          // Check for Purple, Blue, and Red conditions
-          const diff = Math.abs(inputElement - answerElement);
-          if (diff <= 2) {
-              // Purple - Same position and value within 2
-              colorGrades[i] = 'Purple';
-          } else if (answerElement % inputElement === 0) {
-              // Blue - Same position and input is a multiple of answer
-              colorGrades[i] = 'Blue';
-          } else if (inputElement % answerElement === 0) {
-              // Red - Same position and input is divisible by answer
-              colorGrades[i] = 'Red';
-          } else {
-              // Grey - None of the conditions are met
-              colorGrades[i] = 'Grey';
-          }
-      }
-  }
+            else{
+                colorGrades[i] = 'Grey';
+            }
 
-  // Log the color grades into the console
-  console.log('Color Grades:', colorGrades);
+        }
+        else console.log("not pending, continuing");
+    }
 
-  return colorGrades;
+    console.log('Color Grades:', colorGrades);
+    console.log(yellowTracker);
+
+    return colorGrades;
 }
-
-
 
 
       function updateUIWithColorGrades(segmentGroupId, colorGrades) {

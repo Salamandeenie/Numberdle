@@ -297,8 +297,9 @@ function colorGrade(input, answer) {
           if(!isWin(data, answerSegmented))
           {
             createSegmentedInput(slotDifficultyNumber, "groupID" + turnNumber);
+            console.log("groupID" + turnNumber);
+            document.getElementById( "groupID" + turnNumber ).scrollIntoView(); 
           }
-          document.getElementById( "groupID" + turnNumber ).scrollIntoView();
         }
     }
 

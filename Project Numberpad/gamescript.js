@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let previousTurnNumber = turnNumber; // Initialize the previousTurnNumber variable
     const timerPlaceholder = document.getElementById('timerPlaceholder');
     const guessPlaceholder = document.getElementById('guessPlaceholder');
+    const greenTracker = new Array(slotDifficultyNumber).fill(false);
     
     // Function to start the timer
     function startTimer() {
@@ -48,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Generate a random answer number
     function generateAnswer() {
-        let error = false; // Variable to track if an error occurred
         // Generate a new answer
         answerSegmented = generateArray();
         desegmentize(answerSegmented, answerGenerated);
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const inputStr = input.toString();
     
         if (inputStr.length % segmentSize !== 0) {
-            console.log("Error: Answer generated is invalid... Retrying");
+            console.log("Error: Input is invalid");
         }
     
         // Clear the output array
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return false; // If any elements don't match, the arrays are not the same.
       }
     }
-  
+    turnNumber++;
     console.log('You Win');
     alert("You WIN!!!!");
     stopTimer();
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   
 
-  function findNumberInArray(number, array) {
+  function findObjectInArray(number, array) {
     for (let i = 0; i < array.length; i++) {
       if (array[i] === number) {
         return i; // Return the index of the first occurrence of the number
@@ -139,7 +139,34 @@ document.addEventListener("DOMContentLoaded", function () {
     return -1; // If the number is not found in the array, return -1
   }
 
-    const greenTracker = new Array(slotDifficultyNumber).fill(false);
+  function findChildFromParentID(parentId, childNumber) {
+    // Get the parent element by its ID
+    const parent = document.getElementById(parentId);
+  
+    if (parent) {
+      // Get all child elements of the parent
+      const children = parent.children;
+  
+      // Check if the requested child number is within a valid range
+      if (childNumber >= 0 && childNumber < children.length) {
+        // Get the nth child
+        const child = children[childNumber];
+  
+        // Add an ID to the child element using the specified format
+        child.id = `${parentId}_C${childNumber}`;
+  
+        return child;
+      } else {
+        // Return null if the childNumber is out of range
+        return null;
+      }
+    } else {
+      // Return null if the parent element with the given ID is not found
+      return null;
+    }
+  }
+
+    
 function colorGrade(input, answer) {
     const colorGrades = [];
     const yellowTracker = new Array(answer.length).fill(false); // Initialize the tracker array with 'false'
@@ -151,7 +178,7 @@ function colorGrade(input, answer) {
         if (inputElement === answerElement) {
             colorGrades.push('Green');
             yellowTracker[i] = true; // Mark this answer element as matched
-            greenTracker[i] = true; // Mark this as filled in the green tracker
+            greenTracker[i] = inputElement; // Mark this as filled in the green tracker
         } 
             else if (answer.includes(inputElement)) {
             colorGrades.push('pending');
@@ -172,9 +199,9 @@ function colorGrade(input, answer) {
     for (let i = 0; i < input.length; i++){
         if(colorGrades[i] == 'pending') // All the maybe yellows
         {
-            if(yellowTracker[findNumberInArray(input[i], answer)] == false) // Check the yellow tracker, if it is not true, make it yellow, and add it to the tracker.
+            if(yellowTracker[findObjectInArray(input[i], answer)] == false) // Check the yellow tracker, if it is not true, make it yellow, and add it to the tracker.
             {
-                yellowTracker[findNumberInArray(input[i], answer)] = true;
+                yellowTracker[findObjectInArray(input[i], answer)] = true;
                 colorGrades[i] = 'Yellow';
             }
 
@@ -226,8 +253,6 @@ function colorGrade(input, answer) {
     // Function to create segmented input fields with a specified number of slots and a unique group ID
     function createSegmentedInput(slots) {
       turnNumber++; // Increment turnNumber
-      console.log("Turn count has been incremented!!! " + turnNumber );
-
       const segmentedInputsContainer = document.getElementById('segmentedInputsContainer');
 
       const groupDiv = document.createElement('div');
@@ -268,13 +293,10 @@ function colorGrade(input, answer) {
           // Convert the input value to a number and format it
           const value = input.value;
           let formattedValue = "";
-  
-          if (value === "") {
-              formattedValue = "00"; // Handle empty input as "00"
-          } else {
+         {
               const parsedValue = parseInt(value, 10);
-              if (isNaN(parsedValue) || parsedValue < 0) {
-                  formattedValue = "00"; // Handle NaN or negative values as "00"
+              if (isNaN(parsedValue) || parsedValue <= 0) {
+                  formattedValue = "pending"; // Handle NaN or negative values as "00"
               } else {
                   formattedValue = parsedValue.toString().padStart(2, '0');
               }
@@ -282,22 +304,45 @@ function colorGrade(input, answer) {
   
           inputData.push(formattedValue);
       });
-  
+      console.log(inputData);
       return inputData;
   }
-  
 
+  function autoGreen(segmentGroupId, inputData)
+  {
+    input = readInput(segmentGroupId);
+    console.log("inputdata: " + input);
+    console.log("GreenTracker: " + greenTracker);
+
+    for (let i = 0; i < input.length; i++)
+    {
+        if(input[i] == "pending"){
+            input[i] = greenTracker[i];
+            console.log("proinputdata: " + input);
+            if(greenTracker[i] != false){
+                findChildFromParentID(segmentGroupId, i).placeholder = greenTracker[i];
+            }
+        }
+
+        else{
+            input[i] = inputData[i];
+        }
+    }
+
+    return input;
+  }
+  
     // Function to handle a key press (trigger createSegmentedInput on Enter)
     function handleEnterKey(e) {
         if (e.key === 'Enter') {
-          const data = readInput("groupID" + turnNumber);
+          let data = readInput("groupID" + turnNumber);
+          data = autoGreen("groupID" + (turnNumber), data);
           const colorGrades = colorGrade(data, answerSegmented);
           updateUIWithColorGrades("groupID" + turnNumber, colorGrades);
           disableInputsInDiv("groupID" + turnNumber);
           if(!isWin(data, answerSegmented))
           {
             createSegmentedInput(slotDifficultyNumber, "groupID" + turnNumber);
-            console.log("groupID" + turnNumber);
             document.getElementById( "groupID" + turnNumber ).scrollIntoView(); 
           }
         }

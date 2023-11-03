@@ -57,8 +57,14 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 100vw;
     margin: 0; /* Remove default body margin */
     font-family: 'Basis-33', sans-serif;
+    z-index: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+
   }
 input {
     font-family: '14-seg', sans-serif;
@@ -95,6 +101,12 @@ transform: translateY(12vh);
   left: 25%;
 }
 
+#guessPlaceholder, #timerPlaceholder {
+  font-family: '14-seg', sans-serif;
+  background-color: black;
+  color: white;
+}
+
 #title {
   position: fixed;
   top: 0;
@@ -109,7 +121,8 @@ transform: translateY(12vh);
   justify-content: center;
   align-items: center;
   font-weight: bolder;
-  color: black;
+  color: white;
+  background-color: black;
   border-top: none;
   font-family: 'alagard', 'basis-33', sans-serif;
 }

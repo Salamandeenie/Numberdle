@@ -110,6 +110,23 @@ document.addEventListener("DOMContentLoaded", function () {
       output = parseInt(sanitizedInput.join(''), 10);
       return output;
   }
+
+  function isWin(input, answer) {
+    if (input.length !== answer.length) {
+      return false; // If the arrays have different lengths, they can't be the same.
+    }
+  
+    for (let i = 0; i < input.length; i++) {
+      if (input[i] !== answer[i]) {
+        return false; // If any elements don't match, the arrays are not the same.
+      }
+    }
+  
+    console.log('You Win');
+    alert("You WIN!!!!");
+    return true; // If the arrays have the same length and all elements match, you win.
+  }
+  
   
 
   function findNumberInArray(number, array) {
@@ -121,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return -1; // If the number is not found in the array, return -1
   }
 
+    const greenTracker = new Array(slotDifficultyNumber).fill(false);
 function colorGrade(input, answer) {
     const colorGrades = [];
     const yellowTracker = new Array(answer.length).fill(false); // Initialize the tracker array with 'false'
@@ -132,6 +150,7 @@ function colorGrade(input, answer) {
         if (inputElement === answerElement) {
             colorGrades.push('Green');
             yellowTracker[i] = true; // Mark this answer element as matched
+            greenTracker[i] = true; // Mark this as filled in the green tracker
         } 
             else if (answer.includes(inputElement)) {
             colorGrades.push('pending');
@@ -276,6 +295,7 @@ function colorGrade(input, answer) {
           disableInputsInDiv("groupID" + turnNumber);
           createSegmentedInput(slotDifficultyNumber, "groupID" + turnNumber);
           document.getElementById( "groupID" + turnNumber ).scrollIntoView();
+          isWin(data, answerSegmented);
         }
     }
 

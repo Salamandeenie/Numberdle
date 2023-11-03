@@ -124,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     console.log('You Win');
     alert("You WIN!!!!");
+    stopTimer();
     return true; // If the arrays have the same length and all elements match, you win.
   }
   
@@ -293,9 +294,11 @@ function colorGrade(input, answer) {
           const colorGrades = colorGrade(data, answerSegmented);
           updateUIWithColorGrades("groupID" + turnNumber, colorGrades);
           disableInputsInDiv("groupID" + turnNumber);
-          createSegmentedInput(slotDifficultyNumber, "groupID" + turnNumber);
+          if(!isWin(data, answerSegmented))
+          {
+            createSegmentedInput(slotDifficultyNumber, "groupID" + turnNumber);
+          }
           document.getElementById( "groupID" + turnNumber ).scrollIntoView();
-          isWin(data, answerSegmented);
         }
     }
 

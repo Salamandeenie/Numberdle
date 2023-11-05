@@ -262,7 +262,14 @@ function colorGrade(input, answer) {
       for (let i = 0; i < slots; i++) {
           const input = document.createElement('input');
           input.maxLength = 2;
-          input.placeholder = '00';
+          if(greenTracker[i] != false)
+          {
+            input.placeholder = greenTracker[i];
+          }
+          else
+          {
+            input.placeholder = '00';
+          }
           input.addEventListener('input', handleInput);
           input.addEventListener('keydown', handleBackspace);
           groupDiv.appendChild(input);

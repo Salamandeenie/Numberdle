@@ -1,5 +1,5 @@
 Name: Auto-fill green
-Level of imptortance: 2/10
+Level of imptortance: Done
 Description: Make it so there is a toggleable autofill for green
 
 Name: Random guess
@@ -11,7 +11,7 @@ Level of importance: Urgent
 Description: A button that when hit, will reveal the answer, and will block the enter command.
 
 Name: Win function
-Level of importance: Urgent
+Level of importance: Done
 Description: When the input is the answer, the user should win!
 
 Name: Dark Mode
@@ -21,3 +21,7 @@ Description: [Self-Descriptive]
 Name: Fix the damn scaling
 Level of importance: Done for now
 Description: Just fix that damn scaling.
+
+Name: Rewrite to improve efficiency
+Level of importance: Lowest
+Description: As new stuff is added, the efficiency of the program gets bogged down quite a bit.

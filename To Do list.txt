@@ -14,14 +14,21 @@ Name: Win function
 Level of importance: Done
 Description: When the input is the answer, the user should win!
 
-Name: Dark Mode
-Level of importance: Very Low
-Description: [Self-Descriptive]
-
 Name: Fix the damn scaling
 Level of importance: Done for now
 Description: Just fix that damn scaling.
 
+
+
+[ Project Mobilepad ]
+{
+
 Name: Rewrite to improve efficiency
 Level of importance: Lowest
 Description: As new stuff is added, the efficiency of the program gets bogged down quite a bit.
+
+Name: Dark Mode
+Level of importance: Very Low
+Description: [Self-Descriptive]
+
+}

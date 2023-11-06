@@ -66,6 +66,12 @@ body {
 input {
     font-family: '14-seg', sans-serif;
     font-size: 1em;
+    caret-color: transparent;
+    border-radius: 20%;
+    box-shadow: 0 3px 0 #000;
+    background-color: #e4e4e4;
+    outline-offset: 0;
+    border: none;
 }
 input::placeholder {
     font-family: '14-seg', sans-serif;
@@ -122,6 +128,8 @@ transform: translateY(12vh);
   background-color: black;
   border-top: none;
   font-family: 'alagard', 'basis-33', sans-serif;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
 }
 
 #infoBoxLeft, #infoBoxRight{
@@ -135,6 +143,7 @@ transform: translateY(12vh);
 .boxed{
   background-color: white;
   border: solid black 5px;
+  border-radius: 10px;
 }
 
 #infoBoxLeft{

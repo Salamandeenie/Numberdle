@@ -216,32 +216,51 @@ function colorGrade(input, answer) {
 }
 
 
-      function updateUIWithColorGrades(segmentGroupId, colorGrades) {
-        const group = document.getElementById(segmentGroupId);
+function updateUIWithColorGrades(segmentGroupId, colorGrades) {
+    const group = document.getElementById(segmentGroupId);
 
-        if (group) {
-            const inputs = group.querySelectorAll('input');
-            inputs.forEach((input, index) => {
-                // Update the background color of each input based on colorGrades
-                input.style.backgroundColor = getColorCode(colorGrades[index]);
-            });
-        }
+    if (group) {
+        const inputs = group.querySelectorAll('input');
+        inputs.forEach((input, index) => {
+            // Update the background color of each input based on colorGrades
+            const colorCode = getColorCode(colorGrades[index]);
+            if (colorCode) {
+                input.style.backgroundColor = '#' + colorCode;
+
+                // Calculate a shadow color based on your specific requirement
+                // Here, I'm just setting it to a slightly darker shade.
+                const shadowColor = darkenColor(colorCode, 9010); // Adjust the darkness value as needed.
+
+                // Set the boxShadow property on the input element
+                input.style.boxShadow = `0 3px 0 0px #` + shadowColor;
+                console.log(shadowColor);
+            }
+        });
     }
+}
+
+// Function to darken a color code and clamp the result
+function darkenColor(hex, darkness) {
+    const color = parseInt(hex, 16);
+    const darkenedColor = Math.max(0, Math.min(0xFFFFFF, color - darkness)); // Clamp between 0 and 0xFFFFFF
+    return darkenedColor.toString(16).padStart(6, '0');
+}
+
 
     function getColorCode(colorGrade) {
       switch (colorGrade) {
           case 'Green':
-              return '#6ca965';
+              return '6ca965';
           case 'Yellow':
-              return '#c8b653';
+              return 'c8b653';
           case 'Purple':
-              return '#b04bd3';
+              return 'b04bd3';
           case 'Blue':
-              return '#4f4ba3';
+              return '4f4ba3';
           case 'Red':
-              return '#a34b52';
+              return 'a34b52';
           default:
-              return '#787c7f';
+              return '787c7f';
       }
   }
 

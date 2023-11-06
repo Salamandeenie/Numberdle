@@ -349,6 +349,8 @@ function colorGrade(input, answer) {
           if(turnNumber > 50){
             console.log("Failsafe activated: " + answerSegmented)
           }
+
+          findChildFromParentID("groupID" + turnNumber, 0).focus();
         }
     }
 

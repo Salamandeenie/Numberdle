@@ -51,9 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function generateAnswer() {
         // Generate a new answer
         answerSegmented = generateArray();
-        desegmentize(answerSegmented, answerGenerated);
-        console.log(answerGenerated);
-        console.log(answerSegmented);
     }
 
     function generateArray(numElements = 5, digitAmount = 2, minNumber = 0, maxNumber = 99) {
@@ -122,7 +119,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     turnNumber++;
-    console.log('You Win');
     alert("You WIN!!!!");
     stopTimer();
     return true; // If the arrays have the same length and all elements match, you win.
@@ -183,16 +179,20 @@ function colorGrade(input, answer) {
             else if (answer.includes(inputElement)) {
             colorGrades.push('pending');
             } else {
-                const diff = Math.abs(inputElement - answerElement);
-                if (diff <= 2) {
-                    colorGrades.push('Purple');
-                } else if (answerElement % inputElement === 0) {
-                    colorGrades.push('Blue');
-                } else if (inputElement % answerElement === 0) {
-                    colorGrades.push('Red');
-                } else {
-                    colorGrades.push('Grey');
+                if(!inputElement.isNaN)
+                {
+                    const diff = Math.abs(answerElement - inputElement);
+                    if (diff <= 2) {
+                        colorGrades.push('Purple');
+                    } else if (answerElement % inputElement === 0) {
+                        colorGrades.push('Blue');
+                    } else if (inputElement % answerElement === 0 && inputElement != 0) {
+                        colorGrades.push('Red');
+                    } else {
+                        colorGrades.push('Grey');
+                    }
                 }
+                else colorGrades.push('Grey');
             }
     }
 
@@ -210,11 +210,7 @@ function colorGrade(input, answer) {
             }
 
         }
-        else console.log("not pending, continuing");
     }
-
-    console.log('Color Grades:', colorGrades);
-    console.log(yellowTracker);
 
     return colorGrades;
 }
@@ -268,7 +264,7 @@ function colorGrade(input, answer) {
           }
           else
           {
-            input.placeholder = '00';
+            input.placeholder = '--';
           }
           input.addEventListener('input', handleInput);
           input.addEventListener('keydown', handleBackspace);
@@ -311,21 +307,18 @@ function colorGrade(input, answer) {
   
           inputData.push(formattedValue);
       });
-      console.log(inputData);
       return inputData;
   }
 
   function autoGreen(segmentGroupId, inputData)
   {
     input = readInput(segmentGroupId);
-    console.log("inputdata: " + input);
-    console.log("GreenTracker: " + greenTracker);
 
     for (let i = 0; i < input.length; i++)
     {
         if(input[i] == "pending"){
             input[i] = greenTracker[i];
-            console.log("proinputdata: " + input);
+
             if(greenTracker[i] != false){
                 findChildFromParentID(segmentGroupId, i).placeholder = greenTracker[i];
             }
@@ -351,6 +344,10 @@ function colorGrade(input, answer) {
           {
             createSegmentedInput(slotDifficultyNumber, "groupID" + turnNumber);
             document.getElementById( "groupID" + turnNumber ).scrollIntoView(); 
+          }
+
+          if(turnNumber > 50){
+            console.log("Failsafe activated: " + answerSegmented)
           }
         }
     }

@@ -233,7 +233,6 @@ function updateUIWithColorGrades(segmentGroupId, colorGrades) {
 
                 // Set the boxShadow property on the input element
                 input.style.boxShadow = `0 3px 0 0px #` + shadowColor;
-                console.log(shadowColor);
             }
         });
     }

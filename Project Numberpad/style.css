@@ -136,7 +136,7 @@ transform: translateY(12vh);
   position: fixed;
   display: flex;
   width: 18vw;
-  height: 50vh;
+  height: 80vh;
   top: 10vh;
 }
 
@@ -151,9 +151,50 @@ transform: translateY(12vh);
 }
 
 #infoBoxRight{
-  right: 18vw; 
+  right: 18vw;
+}
+
+#tableRightSpecial{
+  border-collapse: separate;
+  border-spacing: 0.5vw 14vh;
 }
 
 #infoBoxLeft, #infoBoxRight, #guessCounterHolder, #title, #timer{
   z-index: 2;
+}
+
+.rainbow-background {
+  background: linear-gradient(90deg, 
+    #ff0000, #ff7700, #ffdd00, #aaff00, #00ff77, #00ffdd, #0077ff, #0000ff,
+    #7700ff, #dd00ff, #ff00aa
+  );
+  background-size: 1000px 100px; /* Controls the speed of the animation */
+
+  animation: rainbow 5s alternate infinite; /* You can adjust the duration as needed */
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+td.button {
+  height: 2vw;
+  width: 11vw;
+  background-color: #fff; /* Button background color */
+  outline: 2px solid black;
+  color: #000; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #000; /* Button background color on hover */
+  color: #fff;
 }

@@ -28,25 +28,37 @@
             <td> Correct number, incorrect position</td>
         </tr>
         <tr>
+            <td><input class="dummy-group" disabled placeholder="##" style="background-color: #b04bd3"></input></td>
+            <td>Input is within 2 numbers of the answers</td>
+        </tr>
+        <tr>
+            <td><input class="dummy-group" disabled placeholder="##" style="background-color: #4f4ba3"></input></td>
+            <td>Input is a factor of the answer</td>
+        </tr>
+        <tr>
+            <td><input class="dummy-group" disabled placeholder="##" style="background-color: #a34b52"></input></td>
+            <td>Input is divisible by the answer</td>
+        </tr>
+        <tr>
             <td><input class="dummy-group" disabled placeholder="##" style="background-color: #787c7f"></input></td>
             <td>Completley Incorrect</td>
         </tr>
     </table>
 </div>
 <div id="infoBoxRight" class="boxed">
-  <table>
-      <tr>
-          <td><input class="dummy-group" disabled placeholder="##" style="background-color: #b04bd3"></input></td>
-          <td>Input is within 2 numbers of the answers</td>
-      </tr>
-      <tr>
-          <td><input class="dummy-group" disabled placeholder="##" style="background-color: #4f4ba3"></input></td>
-          <td>Input is a factor of the answer</td>
-      </tr>
-      <tr>
-          <td><input class="dummy-group" disabled placeholder="##" style="background-color: #a34b52"></input></td>
-          <td>Input is divisible by the answer</td>
-      </tr>
+  <table id="tableRightSpecial">
+    <tr>
+      <td><input class="dummy-group" disabled placeholder="X" style="background-color: #ff0000"></input></td>
+      <td class="button" onclick()="giveUp">Give Up [NOT WORKING]</td>
+  </tr>
+  <tr>
+    <td><input class="dummy-group rainbow-background" disabled placeholder="?"></input></td>
+    <td class="button" onclick()="randGuess">Random Guess [NOT WORKING]</td>
+</tr>
+  <tr>
+    <td><input class="dummy-group" disabled placeholder="" style="background-color: #fff; background-image: url('PNG/github-mark.png'); background-position:center; background-size: cover; outline: 2px solid black"></input></td>
+    <td class="button" onclick()="githubGO">Go to my github page! [NOT WORKING]</td>
+</tr>
   </table>
 </div>
 

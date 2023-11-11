@@ -344,6 +344,7 @@
                 disableInputsById("groupID" + turnTracker);
                 isWin(data, answerGenerated);
                 generateSegmentedInput(slotDifficultyNumber, "groupID" + turnTracker);
+                document.getElementById( "groupID" + turnTracker ).scrollIntoView();
             }
         }
     }

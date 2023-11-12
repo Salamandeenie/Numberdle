@@ -300,7 +300,7 @@
                     const shadowColor = darkenColor(colorCode, 9010); // Def value: 9010
 
                     // Set the boxShadow property on the input element
-                    input.style.boxShadow = '0 3px 0 0px #' + shadowColor;
+                    input.style.boxShadow = '0 5px 0 0px #' + shadowColor;
                 }); 
             }
         }
@@ -344,7 +344,9 @@
                 disableInputsById("groupID" + turnTracker);
                 isWin(data, answerGenerated);
                 generateSegmentedInput(slotDifficultyNumber, "groupID" + turnTracker);
-                document.getElementById( "groupID" + turnTracker ).scrollIntoView();
+                if (!isWinGame){
+                    document.getElementById( "groupID" + turnTracker ).scrollIntoView();
+                }
             }
         }
     }
@@ -363,6 +365,16 @@
             turnTrackerAS();
             stopTimer();
             isWinGame = true;
+
+            var inputElements = document.querySelectorAll('input');
+            document.getElementById('title').textContent = "YOU WIN";
+
+
+            inputElements.forEach(function (input, index) {
+                setTimeout(function () {
+                    input.classList.add('rainbow-background');
+                }, index * 10); // Delay each input by 100ms
+            });         
 
             return true;
         }

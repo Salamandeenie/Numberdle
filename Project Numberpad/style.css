@@ -168,9 +168,9 @@ transform: translateY(12vh);
     #ff0000, #ff7700, #ffdd00, #aaff00, #00ff77, #00ffdd, #0077ff, #0000ff,
     #7700ff, #dd00ff, #ff00aa
   );
-  background-size: 1000px 100px; /* Controls the speed of the animation */
+  background-size: 1000px 10px; /* Controls the speed of the animation */
 
-  animation: rainbow 5s alternate infinite; /* You can adjust the duration as needed */
+  animation: rainbow 3s alternate infinite; /* You can adjust the duration as needed */
 }
 
 @keyframes rainbow {

@@ -160,7 +160,7 @@ transform: translateY(12vh);
 
 #tableRightSpecial{
   border-collapse: separate;
-  border-spacing: 0.5vw 14vh;
+  border-spacing: 0.5vw 10vh;
 }
 
 #infoBoxLeft, #infoBoxRight, #guessCounterHolder, #title, #timer{
@@ -170,12 +170,21 @@ transform: translateY(12vh);
 .rainbow-background {
   background: linear-gradient(90deg, 
     #ff0000, #ff7700, #ffdd00, #aaff00, #00ff77, #00ffdd, #0077ff, #0000ff,
-    #7700ff, #dd00ff, #ff00aa
+    #7700ff
   );
   background-size: 1000px 10px; /* Controls the speed of the animation */
 
   animation: rainbow 3s alternate infinite; /* You can adjust the duration as needed */
 }
+
+.redbow-background {
+    background: linear-gradient(90deg, 
+      #ffff, #ff0000
+    );
+    background-size: 1000px 10px; /* Controls the speed of the animation */
+  
+    animation: rainbow 500ms alternate infinite; /* You can adjust the duration as needed */
+  }
 
 @keyframes rainbow {
   0% {

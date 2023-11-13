@@ -26,6 +26,7 @@
     margin-left: 1vh !important;
   }
 
+/* Default styles for wider screens */
 .segment-group input, .dummy-group {
     width: 3vw;
     height: 3vw; /* Make it square */
@@ -34,6 +35,9 @@
     font-size: 1.5vw; /* Increase font size */
     font-weight: bold; /* Make text bold */
   }
+
+  
+
 input::placeholder {
     color:grey;
     opacity: 1;
@@ -198,3 +202,40 @@ td.button {
   background-color: #000; /* Button background color on hover */
   color: #fff;
 }
+
+
+
+
+
+  /* Media query for screens under 400px width */
+  @media (max-width:600px){
+    .segment-group input, .dummy-group {
+      width: 15vw;
+      height: 15vw; /* Make it square */
+      text-align: center;
+      margin: 0 0.1em; /* Add space between segments */
+      font-size: 7.5vw; /* Increase font size */
+      font-weight: bold; /* Make text bold */
+    }
+
+    #guessCounterHolder, #timer {
+        height: 10vh;
+        width: 25vw;
+        font-size: 1em;
+      }
+
+      #timer{
+        right: 10%;
+      }
+      #guessCounterHolder{
+        left: 10%;
+      }
+      #infoBoxLeft, #infoBoxRight{
+        position: fixed;
+        display: flex;
+        width: 18vw;
+        height: 80vh;
+        top: 0;
+        left: -9999999vh;
+      }
+  }

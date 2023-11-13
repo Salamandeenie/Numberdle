@@ -4,7 +4,7 @@
     {
         // This function starts the updateTimer function by giving it the starting time
         function startTimer(){
-            timerInterval = setInterval(updateTimer, 100);
+            timerInterval = setInterval(updateTimer, 1000);
         }
 
         // The afermentioned updateTimer function. This keeps track of the time elapsed, and draws it to the timerPlaceholder so the player can see it
@@ -206,7 +206,6 @@
         // This is the heart of the color grading functions. It uses math to determine the colors that should be returned to the later functions
         // This function expects arrays as inputs
         function colorGrade(input, answer){
-            console.log(input);
             const colorGrades = []; // The array that holds all of the color grades
             const yellowTracker = new Array(answer.length).fill(false); // Tracks yellows
             
@@ -352,6 +351,32 @@
         }
     }
 
+    // Button functions 
+    {
+        function githubGO() {
+            window.location.href = 'https://github.com/Salamandeenie/'; 
+        }
+
+        function randGuess(){
+            let randomGuess = generateArray(slotDifficultyNumber, 2, 0, 99);
+            console.log();
+            forceEnter(randomGuess);
+
+        }
+
+        function giveUp(){
+            isFailGame = true;
+            alert("The answer is: " + answerGenerated);
+            alert("Also, you lose");
+            forceEnter(answerGenerated)
+            isWin(answerGenerated, answerGenerated);
+        }
+
+        function resetti(){
+            location.reload(true);
+        }
+    }
+
     // Misc. functions 
     {
         // Checks if the player has won. If they have, celebrate. If they have not, boo hoo I guess.
@@ -367,17 +392,54 @@
             stopTimer();
             isWinGame = true;
 
-            var inputElements = document.querySelectorAll('input');
-            document.getElementById('title').textContent = "YOU WIN";
+            if(!isFailGame){
+                var inputElements = document.querySelectorAll('input');
+                document.getElementById('title').textContent = "YOU WIN";
+    
+    
+                inputElements.forEach(function (input, index) {
+                    setTimeout(function () {
+                        input.classList.add('rainbow-background');
+                    }, index * 10); // Delay each input by 10ms
+                });     
+            }    
 
-
-            inputElements.forEach(function (input, index) {
-                setTimeout(function () {
-                    input.classList.add('rainbow-background');
-                }, index * 10); // Delay each input by 10ms
-            });         
+            else {
+                var inputElements = document.querySelectorAll('input');
+                document.getElementById('title').textContent = "YOU LOSE";
+    
+    
+                inputElements.forEach(function (input, index) {
+                    setTimeout(function () {
+                        input.classList.add('redbow-background');
+                    }, index * 10); // Delay each input by 10ms
+                });     
+            }
 
             return true;
+        }
+
+        // Does what the enter handler does, just without pressing the enter key, and doesn't actually look at the input of the user, hence the "force". Is to be used only by the isWin()
+        function forceEnter(forceInput = undefined, forceAnswer = undefined)
+        {
+            var data = forceInput;
+            if (!isWinGame) {
+                if (!forceInput)
+                {
+                    data = readInput("groupID" + turnTracker);
+                    data = autoGreen("groupID" + (turnTracker), data);
+                }
+                const colorGrades = colorGrade(data, answerGenerated);
+                updateColorGrade("groupID" + turnTracker, colorGrades);
+                disableInputsById("groupID" + turnTracker);
+                isWin(data, answerGenerated);
+                generateSegmentedInput(slotDifficultyNumber, "groupID" + turnTracker);
+
+                for ( let i = 0; i < data.length; i++ )
+                {
+                    findChildFromParentID("groupID" + (turnTracker -1), i).placeholder = forceInput[i]; // Nab the answer value, and redraw it to the screen. Slam Bam.
+                }
+            }
         }
 
         // Disables the use of a specific segmented group using the groups ID
@@ -391,4 +453,3 @@
             }
         }
     }
-        // END OF FILE

@@ -222,7 +222,7 @@
                     else if (answer.includes(inputElement)) {
                         colorGrades.push('pending');
                     } else {
-                        if (!inputElement.isNaN)
+                        if (!inputElement.isNaN /* && inputElement != "" && inputElement != undefined*/)
                         {
                             const diff = Math.abs(answerElement - inputElement);
                             if (diff <= 2) {
@@ -345,6 +345,7 @@
                 isWin(data, answerGenerated);
                 generateSegmentedInput(slotDifficultyNumber, "groupID" + turnTracker);
                 if (!isWinGame){
+                    findChildFromParentID("groupID" + turnTracker, 0).focus();
                     document.getElementById( "groupID" + turnTracker ).scrollIntoView();
                 }
             }
@@ -373,7 +374,7 @@
             inputElements.forEach(function (input, index) {
                 setTimeout(function () {
                     input.classList.add('rainbow-background');
-                }, index * 10); // Delay each input by 100ms
+                }, index * 10); // Delay each input by 10ms
             });         
 
             return true;

@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function (){
     generateAnswer();
     updateGuessCounter();
 
+    findChildFromParentID("groupID" + turnTracker, 0).focus();
+    document.getElementById( "groupID" + turnTracker ).scrollIntoView();
+
     console.log(answerGenerated);
 
 });

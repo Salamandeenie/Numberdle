@@ -208,7 +208,7 @@ td.button {
 
 
   /* Media query for screens under 400px width */
-  @media only screen and (max-width: 60em){
+  @media only screen and (max-width:500px){
     .segment-group input, .dummy-group {
       width: 15vw;
       height: 15vw; /* Make it square */

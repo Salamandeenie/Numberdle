@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional CSS Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Default styles for larger screens */
+        body {
+            color: black;
+            background-color: white;
+        }
+
+        /* Media query for screens below 500px width */
+        @media (max-width: 500px) {
+            body {
+                color: white;
+                background-color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Conditional CSS Demo</h1>
+    <p>This text will have different colors based on the screen width.</p>
+</body>
+</html>

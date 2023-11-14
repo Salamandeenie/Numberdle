@@ -12,6 +12,9 @@
     // If this is true, we know that the player has given up, and to ignore isWinGame
     var isFailGame = false;
 
+    // If the player has peeked at the answer sum this is true.
+    var isPeek = false;
+
     // This changes how many segments there are. Default is 5.
     var slotDifficultyNumber = 5;
 
@@ -27,6 +30,7 @@
     // The clock time when the page is loaded. Used by the timer functions
     var startTime = new Date().getTime();
 
-    // These functions just nab refrences for the two placeholders
+    // These functions just nab refrences for the placeholders
     const timerPlaceholder = document.getElementById('timerPlaceholder');
     const guessPlaceholder = document.getElementById('guessPlaceholder'); 
+    const sumPeekerPlaceholder = document.getElementById('sumPeekerPlaceHolder');

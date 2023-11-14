@@ -389,6 +389,20 @@
         function resetti(){
             location.reload(true);
         }
+
+        function sumPeek()
+        {
+            const peek = sumArray(answerGenerated);
+
+            if(!isPeek)
+            {
+                isPeek = true;
+                sumPeekerPlaceHolder.style.fontSize = '2em';
+                sumPeekerPlaceHolder.textContent = peek;
+                turnTrackerAS(5);
+            }
+
+        }
     }
 
     // Misc. functions 
@@ -466,4 +480,26 @@
                 });
             }
         }
+
+        // This function takes an array and returns the sum of its elements
+        function sumArray(arr) {
+            if (!Array.isArray(arr) || arr.length === 0) {
+              // Handle invalid input
+              return null;
+            }
+          
+            let sum = 0;
+          
+            for (let i = 0; i < arr.length; i++) {
+              // Use parseFloat to convert string numbers to actual numbers
+              const num = parseFloat(arr[i]);
+          
+              // Check if the conversion is successful and the result is not NaN
+              if (!isNaN(num)) {
+                sum += num;
+              }
+            }
+          
+            return sum;
+          }
     }

@@ -239,6 +239,8 @@
             }
 
             for ( let i = 0; i < input.length; i++ ) {
+                var inputElement = input[i];
+                var answerElement = answer[i];
                 if(colorGrades[i] == 'pending')
                 {
                     if(yellowTracker[findObjectInArray(input[i], answer)] == false) // Check the yellow tracker. If the input is not in the answer, add it to the tracker and make it yellow.
@@ -248,7 +250,16 @@
                     }
 
                     else {
-                        colorGrades[i] = 'Grey';
+                        const diff = Math.abs(answerElement - inputElement);
+                        if (diff <= 2) {
+                            colorGrades[i] = 'Purple'; // If the input is within 2, return purple
+                        } else if (answerElement % inputElement === 0) {
+                            colorGrades[i] = 'Blue'; // If the answer is divisible by the input, return blue
+                        } else if (inputElement % answerElement === 0 && inputElement != 0) {
+                            colorGrades[i] = 'Red'; // If the input is divisible by the answer, return red
+                        } else {
+                            colorGrades[i] = 'Grey'; // If all else fails, return grey
+                        }
                     }
                 }
             }

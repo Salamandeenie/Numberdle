@@ -9,6 +9,6 @@ document.addEventListener("DOMContentLoaded", function (){
     findChildFromParentID("groupID" + turnTracker, 0).focus();
     document.getElementById( "groupID" + turnTracker ).scrollIntoView();
 
-    console.log(answerGenerated);
+    // console.log(answerGenerated);
 
 });

@@ -371,7 +371,6 @@
 
         function randGuess(){
             let randomGuess = generateArray(slotDifficultyNumber, 2, 0, 99);
-            console.log();
             forceEnter(randomGuess);
             findChildFromParentID("groupID" + turnTracker, 0).focus();
             document.getElementById( "groupID" + turnTracker ).scrollIntoView();

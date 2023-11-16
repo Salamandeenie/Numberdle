@@ -84,7 +84,7 @@
                 const input = document.createElement('input');
                 input.maxLength = 2;
 
-                if(greenTracker[i] != undefined && greenTracker[i] != false)
+                if(greenTracker[i] !== undefined && greenTracker[i] !== false)
                 {
                     input.placeholder = greenTracker[i];
                 }
@@ -213,7 +213,7 @@
                 var inputElement = input[i];
                 var answerElement = answer[i];
 
-                if (inputElement === answerElement) {
+                if (inputElement == answerElement) {
                     colorGrades.push('Green');
                     yellowTracker[i] = true; // Mark slot as used for yellow tracker
                     greenTracker[i] = inputElement; // Marks down  the value of inputElement in the greenTracker for the autoGreen funciton
@@ -390,7 +390,7 @@
             location.reload(true);
         }
 
-        function sumPeek()
+        function sumPeek() // Unused
         {
             const peek = sumArray(answerGenerated);
 

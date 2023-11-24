@@ -14,3 +14,5 @@ Simply go <a href="https://salamandeenie.github.io/Numberdle/Project%20Numberpad
 - If you encounter any errors, glitches, have comments or questions, email (calisheason@gmail.com)
 
 - Be sure to include screenshots of the console (Accessible by pressing ctrl+shift+i, and clicking <b>console</b>)
+
+- [11/24/23] Please note that this project is now on the back burner. Any issues reported will be fixed asap, though new functionality will take a bit.

@@ -426,7 +426,7 @@
     
                 inputElements.forEach(function (input, index) {
                     setTimeout(function () {
-                        input.classList.add('rainbow-background');
+                        input.classList.add('rainbow-background-animated');
                     }, index * 10); // Delay each input by 10ms
                 });     
             }    
@@ -438,7 +438,7 @@
     
                 inputElements.forEach(function (input, index) {
                     setTimeout(function () {
-                        input.classList.add('redbow-background');
+                        input.classList.add('redbow-background-animated');
                     }, index * 10); // Delay each input by 10ms
                 });     
             }

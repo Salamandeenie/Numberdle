@@ -169,6 +169,21 @@ transform: translateY(12vh);
 
 .rainbow-background {
   background: linear-gradient(90deg, 
+  #ff0000, #ff7700, #ffdd00, #aaff00, #00ff77, #00ffdd, #0077ff, #0000ff,
+  #7700ff
+);
+
+  background-size: 100% 100%; 
+}
+
+.redbow-background {
+  background:#ff0000;
+}
+
+
+
+.rainbow-background-animated {
+  background: linear-gradient(90deg, 
     #ff0000, #ff7700, #ffdd00, #aaff00, #00ff77, #00ffdd, #0077ff, #0000ff,
     #7700ff
   );
@@ -177,7 +192,7 @@ transform: translateY(12vh);
   animation: rainbow 3s alternate infinite; /* You can adjust the duration as needed */
 }
 
-.redbow-background {
+.redbow-background-animated {
     background: linear-gradient(90deg, 
       #ffff, #ff0000
     );

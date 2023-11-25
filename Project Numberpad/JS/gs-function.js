@@ -461,6 +461,7 @@
                 disableInputsById("groupID" + turnTracker);
                 isWin(data, answerGenerated);
                 generateSegmentedInput(slotDifficultyNumber, "groupID" + turnTracker);
+                writeToSegments(forceInput);
 
                 for ( let i = 0; i < data.length; i++ )
                 {
@@ -501,4 +502,18 @@
           
             return sum;
           }
+
+          // This function writes the input to the segments of the previous turn
+        function writeToSegments(array) {
+            const segmentGroupID = "groupID" + (turnTracker - 1);
+            const group = document.getElementById(segmentGroupID);
+
+            if (group) {
+                const inputs = group.querySelectorAll('input');
+                inputs.forEach((input, index) => {
+                input.value = array[index];
+            });
+    }
+}
+
     }
